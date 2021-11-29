@@ -6,11 +6,11 @@ import sys
 
 
 app = Flask(__name__)
-app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://ubu:tootechnical@localhost:5432/todoapp'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://ubu:tootechnical@db:5432/todoapp'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(app)
 
-migrate = Migrate(app, db)
+# migrate = Migrate(app, db)
 
 class Todo(db.Model):
     __tablename__ = 'todos'
@@ -29,7 +29,7 @@ class TodoList(db.Model):
 
 
 
-# db.create_all()
+db.create_all()
 
 @app.route('/newlist/<new_list_id>deletodos')
 def list_delete_todos(new_list_id):
@@ -159,4 +159,4 @@ def index():
 
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(debug=True,host='0.0.0.0')

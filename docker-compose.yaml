@@ -1,0 +1,17 @@
+version: "3"
+services:
+  db:
+    image: postgres
+    restart: always
+    environment:
+      POSTGRES_USER: ubu
+      POSTGRES_PASSWORD: tootechnical
+      POSTGRES_DB: todoapp
+    ports: 
+    - "5432"
+  web:
+    image: todoapp
+    depends_on:
+      - db
+    ports:
+      - "5000:5000"
