@@ -9,8 +9,10 @@ services:
       POSTGRES_DB: todoapp
     ports: 
     - "5432"
+    volumes:
+    - "/Users/lfuller/Desktop/cleanup/todoapp/todoapp/forsql:/var/lib/postgresql/new"
   web:
-    image: todoapp
+    image: todoapp2
     depends_on:
       - db
     ports:
